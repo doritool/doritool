@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run --rm -u "$(id -u)" -v "$(pwd)":/home/vep/doritool --name doritool doritool/doritool "$@"

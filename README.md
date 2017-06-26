@@ -1,42 +1,57 @@
 ﻿# DoriTool Installation
 
 DoriTool modules are written in Perl, Bash, and R scripts, and run on any UNIX-like operating system.
-To install DoriTool, simply download run the installer script, which automatically download the necessary libraries, packages and annotation files. Alternatively, the user can install its dependencies manually or using the Docker container provided. The full source code and the container is freely available on the GitHub repository (https://github.com/doritool).
+To use  DoriTool, simply download the execution script of a docker container, which automatically download the necessary container image with the packages and annotation files. Alternatively, the user can install its dependencies manually (See in detail the [Dockerfile](https://github.com/doritool/doritool/blob/master/Dockerfile).) The full source code and the container is freely available on the GitHub repository (https://github.com/doritool/doritool).
 DoriTool website includes general information about the purpose of the tool, instances and explanations about its uses, as well as the link to connect to the GitHub repository in order to download the tool directly (https://doritool.github.io/).
 The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licenses/gpl-3.0.txt).
 
+## Steps
+1. Install Docker from the official web site
+  - [Linux](https://docs.docker.com/engine/installation/#supported-platforms)
+  - [Mac](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
+  - [Window](https://docs.docker.com/docker-for-windows/install/)
+
+2. Download the DoriTool repository
+  - `git clone https://github.com/doritool/doritool.git`
+
+     or the zip file
+
+  - https://github.com/doritool/doritool/archive/master.zip
+
+3. See the next section for learn how to run the `./doritool` script (<font color="red">first execution have to download the docker image, be patient</font>)
+
 # Quick start
 
-1) Go to GitHub Repository at https://github.com/doritool to download.
-DoriTool uses GRCh37 human assembly.
-2) Input data a mutation/variant call format file (VCF) or an rs identifier SNP list.
-3) Perform the functional in silico analysis from the shell as follows bellow
+<font color="red">DoriTool uses GRCh37 human assembly .</font>
+1) Input data a mutation/variant call format file (VCF) or an rs identifier SNP list.
+2) Perform the functional in silico analysis from the shell as follows bellow
 
 3.1 Variant annotation analyslis (without Linkage Disequilibrium and eQTLs).
 
 There are two ways to specify the input file (`-- input`, `-i file` )
 
-`./code/DoriTool.sh -i web.rs`
+`./doritool -i web.rs`
 
-`./code/DoriTool.sh -- web.rs`
+`./doritool -- web.rs`
 
 3.2. Variant annotation analysis with linkage Disequilibrium (--LD , -l). Notice the cutoff must be specified.
 
-`./code/DoriTool.sh -l 0.90 -i web.rs`
+`./doritool -l 0.90 -i web.rs`
 
-`./code/DoriTool.sh --LD 0.90 -i web.rs`
+`./doritool --LD 0.90 -i web.rs`
 
 3.3. Variant annotation analysis with eQTLs (`--GTEx`, `-e`). Notice that the specific human tissue required must be downloaded previously from https://www.gtexportal.org/home/
 
-    ./code/DoriTool.sh --GTEx Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
+    ./doritool --GTEx Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
+
 
 ___
 
-    ./code/DoriTool.sh -e Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
+    ./doritool -e Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
 
 3.4.Variant annotation analysis with Linkage Disequilibrium and eQTLs
 
-    ./code/DoriTool.sh -l 0.90 -e Brain_Nucleus_accumbens_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs.
+    ./doritool -l 0.90 -e Brain_Nucleus_accumbens_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs.
 
 # Features considered for DoriTool
 Annotation levels and the bioinformatics tools used in DoriTool are shown in the table below (Table1)

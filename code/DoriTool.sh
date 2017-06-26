@@ -1,5 +1,4 @@
 #!/bin/bash
-# -*- ENCODING: UTF-8 -*-
 
 # DoriTool is the most complete bioinformatic tool offering functional 'in silico' annotation of variants
 # Copyright (C) 2017 Isabel Martín-Antoniano, Lola Alonso,Miguel Madrid; Evangelina López de Maturana; Núria Malats. Genetic and Molecular Epidemiology Group of Spanish National Cancer Research Centre (CNIO)
@@ -77,7 +76,7 @@ else                                                    # user provides chr, pos
 fi
 
 ################ Variant Effect Predictor ###################
-perl /opt/ensembl-tools-release-84/scripts/variant_effect_predictor/variant_effect_predictor.pl --cache --force_overwrite --port 3337 -i "$INPUTDIR"/"$FILEINPUT" --symbol --tab --plugin UpDownDistance,10000,5000 --regulatory --plugin NearestGene,limit=1,max_range=1000000 --plugin Condel,/home/bioinfo/.vep/Plugins/config/ -o "$OUTPUTDIR"/VEP/condeloutput.txt
+vep --database --force_overwrite --port 3337 -i "$INPUTDIR"/"$FILEINPUT" --symbol --tab --plugin UpDownDistance,10000,5000 --regulatory --plugin NearestGene,limit=1,max_range=1000000 --plugin Condel -o "$OUTPUTDIR"/VEP/condeloutput.txt
 
 
 if [[ $LDrequired != "" ]] ; then
@@ -86,7 +85,7 @@ if [[ $LDrequired != "" ]] ; then
 fi
 
 if [[ "$filenameGTEx" != "" ]] ; then
-   perl /opt/ensembl-tools-release-84/scripts/variant_effect_predictor/variant_effect_predictor.pl --cache --force_overwrite --port 3337 -i "$INPUTDIR"/"$FILEINPUT" --vcf -o "$OUTPUTDIR"/VEP/condeloutput.vcf
+   vep --force_overwrite --port 3337 -i "$INPUTDIR"/"$FILEINPUT" --vcf -o "$OUTPUTDIR"/VEP/condeloutput.vcf
    awk 'BEGIN{FS="\t"} { if ( ! /^#/ ) {print $3"\t"$1"_"$2"_"$4"_"$5"_b37"} }' "$OUTPUTDIR"/VEP/condeloutput.vcf > "$OUTPUTDIR"/VEP/unique_variants.txt
    printf  "rs_id\tvariant_id\tgene_id\ttss_distance\tpval_nominal\tslope\tslope_se\tslope_fpkm\tslope_fpkm_se\tpval_nominal_threshold\tmin_pval_nominal\tpval_beta" > "$OUTPUTDIR"/variants_eQTLs.tsv
    for variant in `cut -f2 "$OUTPUTDIR"/VEP/unique_variants.txt`; do printf $variant"\n"; grep $variant -w $filenameGTEx ; done >> "$OUTPUTDIR"/variants_eQTLs.tsv
@@ -176,7 +175,7 @@ cut -f1-4,7,14,17,18,21,22,23,24,25,26,27,28,29,31 "$OUTPUTDIR"/CompleteReport.t
 
 BACKUPIFS=$IFS
 IFS=$'\n'
-for vargene in `cut -f3,4,5 SummaryReport0.tsv | sort -u | sort -n `; do grep -w -m1 -P "$vargene\t" SummaryReport0.tsv; done > "$OUTPUTDIR"/SummaryReport.tsv
+for vargene in `cut -f3,4,5 SummaryReport0.tsv | sort -u | sort -n `; do grep -m1 -P "$vargene\t" SummaryReport0.tsv; done > "$OUTPUTDIR"/SummaryReport.tsv
 IFS=$BACKUPIFS
 
 # remove extra intermediary files
