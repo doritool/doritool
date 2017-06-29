@@ -1,4 +1,4 @@
-﻿# DoriTool Installation
+﻿# DoriTool usage
 
 DoriTool modules are written in Perl, Bash, and R scripts, and run on any UNIX-like operating system.
 To use  DoriTool, simply download the execution script of a docker container, which automatically download the necessary container image with the packages and annotation files. Alternatively, the user can install its dependencies manually (See in detail the [Dockerfile](https://github.com/doritool/doritool/blob/master/Dockerfile).) The full source code and the container is freely available on the GitHub repository (https://github.com/doritool/doritool).
@@ -12,13 +12,13 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
   - [Window](https://docs.docker.com/docker-for-windows/install/)
 
 2. Download the DoriTool repository
-  - `git clone https://github.com/doritool/doritool.git`
+    - `git clone https://github.com/doritool/doritool.git`
 
      or the zip file
 
-  - https://github.com/doritool/doritool/archive/master.zip
+    - <https://github.com/doritool/doritool/archive/master.zip>
 
-3. See the next section for learn how to run the `./doritool` script (<font color="red">first execution have to download the docker image, be patient</font>)
+3. See the next section for learning how to run the `./doritool` script (<font color="red">the first time, the docker image will be downloaded, be patient</font>)
 
 # Quick start
 
