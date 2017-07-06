@@ -9,7 +9,8 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 1. Install Docker from the official web site
   - [Linux](https://docs.docker.com/engine/installation/#supported-platforms)
   - [Mac](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
-  - [Window](https://docs.docker.com/docker-for-windows/install/)
+  - [Window](https://docs.docker.com/docker-for-windows/install/) (In case it is needed, use _[docker toolbox](https://www.docker.com/products/docker-toolbox)_ )
+       - Notice: Activate BIOS VT-X/AMD-v if is not enabled. Enabling it in the BIOS is mandatory
 
 2. Download the DoriTool repository
     - `git clone https://github.com/doritool/doritool.git`
@@ -18,7 +19,11 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 
     - <https://github.com/doritool/doritool/archive/master.zip>
 
-3. See the next section for learning how to run the `./doritool` script (<font color="red">the first time, the docker image will be downloaded, be patient</font>)
+    Notice:
+
+    For window's users download the DoriTool repository using cmd (click windows R and write cmd, the shell will be opened). Or directly from the docker toolbox Shell.
+
+3. See the next section for learning how to run the _doritool_ script (<font color="red">the first time, the docker image will be downloaded, be patient</font>)
 
 # Quick start
 
@@ -26,32 +31,42 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 1) Input data a mutation/variant call format file (VCF) or an rs identifier SNP list.
 2) Perform the functional in silico analysis from the shell as follows bellow
 
+- Linux users
+
+    `./doritool`
+
+- Windows users
+
+    `doritool.bat`
+
+Run one of these scripts with the next parameters
+
 3.1 Variant annotation analyslis (without Linkage Disequilibrium and eQTLs).
 
 There are two ways to specify the input file (`-- input`, `-i file` )
 
-`./doritool -i web.rs`
+`-i web.rs`
 
-`./doritool -- web.rs`
+`-- web.rs`
 
 3.2. Variant annotation analysis with linkage Disequilibrium (--LD , -l). Notice the cutoff must be specified.
 
-`./doritool -l 0.90 -i web.rs`
+`-l 0.90 -i web.rs`
 
-`./doritool --LD 0.90 -i web.rs`
+`--LD 0.90 -i web.rs`
 
 3.3. Variant annotation analysis with eQTLs (`--GTEx`, `-e`). Notice that the specific human tissue required must be downloaded previously from https://www.gtexportal.org/home/
 
-    ./doritool --GTEx Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
+    --GTEx Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
 
 
 ___
 
-    ./doritool -e Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
+    -e Brain_Caudate_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs
 
 3.4.Variant annotation analysis with Linkage Disequilibrium and eQTLs
 
-    ./doritool -l 0.90 -e Brain_Nucleus_accumbens_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs.
+    -l 0.90 -e Brain_Nucleus_accumbens_basal_ganglia_Analysis.nominal.filtered.txt -i web.rs.
 
 # Features considered for DoriTool
 Annotation levels and the bioinformatics tools used in DoriTool are shown in the table below (Table1)
