@@ -1,8 +1,8 @@
-﻿# DoriTool usage
+# DoriTool - https://doritool.github.io/
 
 DoriTool modules are written in Perl, Bash, and R scripts, and run on any UNIX-like operating system.
 To use  DoriTool, simply download the execution script of a docker container, which automatically download the necessary container image with the packages and annotation files. Alternatively, the user can install its dependencies manually (See in detail the [Dockerfile](https://github.com/doritool/doritool/blob/master/Dockerfile).) The full source code and the container is freely available on the GitHub repository (https://github.com/doritool/doritool).
-DoriTool website includes general information about the purpose of the tool, instances and explanations about its uses, as well as the link to connect to the GitHub repository in order to download the tool directly (https://doritool.github.io/).
+DoriTool website (https://doritool.github.io/) includes general information about the purpose of the tool, instances and explanations about its uses, as well as the link to connect to the GitHub repository in order to download the tool directly.
 The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licenses/gpl-3.0.txt).
 
 ## Steps
@@ -27,9 +27,13 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 
 # Quick start
 
-<font color="red">DoriTool uses GRCh37 human assembly .</font>
-1) Input data a mutation/variant call format file (VCF) or an rs identifier SNP list.
-2) Perform the functional in silico analysis from the shell as follows bellow
+1) Go to GitHub Repository at <https://github.com/doritool/doritool> and read the [Readme.md](https://github.com/doritool/doritool/blob/master/README.md) file. <font color="red">DoriTool uses _GRCh37_ human assembly</font>.
+
+**Read [TROUBLESHOOTING.md](https://github.com/doritool/doritool/blob/master/TROUBLESHOOTING.md) file in case you are not able to run DoriTool**
+
+2) Input data a mutation/variant call format file (VCF) or an rs identifier SNP list.
+
+3) Perform the functional in silico analysis from the shell as follows bellow
 
 - Linux users
 
@@ -43,13 +47,13 @@ Run one of these scripts with the next parameters
 
 3.1 Variant annotation analyslis (without Linkage Disequilibrium and eQTLs).
 
-There are two ways to specify the input file (`-- input`, `-i file` )
+There are two ways to specify the input file (`-- file`, `-i file` )
 
 `-i web.rs`
 
 `-- web.rs`
 
-3.2. Variant annotation analysis with linkage Disequilibrium (--LD , -l). Notice the cutoff must be specified.
+3.2. Variant annotation analysis with linkage Disequilibrium (--LD , -l). Notice the cutoff must be specified together the .rs file.
 
 `-l 0.90 -i web.rs`
 
@@ -133,3 +137,9 @@ Moreover, the offline mode of DAVID is considered, since it does not need specif
 ### Network level
 DoriTool also provides coloured Functional Networks (see Table 3) of the list of genes tagged by the input variant list. These functional connections between the different genes were based on annotations (GO) and given by DAVID functions included in FGNet. Building functional networks provids an overview of the biological functions of the genes/terms, and permits links between genes, overlapping between clusters.
 Genes in solid colour have a unique cluster (and their color corresponds to the one shown in the table 3), while genes with a white background are shared genes between clusters. The intersection network,  is a simplified functional network where all the genes that belong to only one metagroup are clustered into a single node. Clusters are represented by square boxes and genes are circles.
+
+# Please cite us
+When using Doritool for a publication please cite as
+
+**Martín-Antoniano,I; Alonso,L; Madrid,M; López de Maturana, E; Malats,N**. _DoriTool: A bioinformatics integrative tool for post-association functional annotation_. Public Health Genomics. 2017;20(2):126-135. doi: 10.1159/000477561 (<https://doi.org/10.1159/000477561>).
+
