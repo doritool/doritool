@@ -53,7 +53,7 @@ There are two ways to specify the input file (`-- file`, `-i file` )
 
 `-- web.rs`
 
-3.2. Variant annotation analysis with linkage Disequilibrium (--LD , -l). Notice the cutoff must be specified together the .rs file.
+3.2. Variant annotation analysis with linkage Disequilibrium (--LD , -l). Notice the cutoff must be specified. LD needs input rs.
 
 `-l 0.90 -i web.rs`
 
