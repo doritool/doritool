@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # DoriTool is the most complete bioinformatic tool offering functional 'in silico' annotation of variants
 # Copyright (C) 2017 Isabel Martín-Antoniano, Lola Alonso,Miguel Madrid; Evangelina López de Maturana; Núria Malats. Genetic and Molecular Epidemiology Group of Spanish National Cancer Research Centre (CNIO)
@@ -60,8 +60,8 @@ print "File type that has been introduced as input: $inputfiletype\n";
 print "SNPs for which LD is calculated in a pairwise mode in EUR population (includes CEU, IBS, TSI, FIN, GBR...):\n";
 print "@arraySNPs";
 print "\n";
-
-my $LDfile = "./output/pairwise_LD.tsv";
+;
+my $LDfile = "$ENV{'OUTPUTDIR'}/pairwise_LD.tsv";
 open (LDFILE, ">$LDfile") or die "Could not open LDFILE $LDfile)";
 print LDFILE "pairwise_SNPs\tLD_r2\tLD_Dprime\n";
 
@@ -69,7 +69,7 @@ for (my $snp1=0; $snp1<=$#arraySNPs; $snp1++) {
 	for (my $snp2=$snp1+1; $snp2<=$#arraySNPs; $snp2++) {
 		my $server = 'http://grch37.rest.ensembl.org';
 		my $ext = '/ld/human/pairwise/'.$arraySNPs[$snp1].'/'.$arraySNPs[$snp2].'?population_name=1000GENOMES:phase_3:EUR';
- 		print "\n$arraySNPs[$snp1]\t$arraySNPs[$snp2]\n";
+ 		print "$arraySNPs[$snp1]\t$arraySNPs[$snp2]\n";
 		my $response = $http -> get($server.$ext, { headers => { 'Content-type' => 'application/json' } });
 #  		die "Failed!\n" unless $response->{success};   # comment this because stops prematurely the program
 

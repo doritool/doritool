@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 # DoriTool is the most complete bioinformatic tool offering functional 'in silico' annotation of variants
 # Copyright (C) 2017 Isabel Martín-Antoniano, Lola Alonso,Miguel Madrid; Evangelina López de Maturana; Núria Malats. Genetic and Molecular Epidemiology Group of Spanish National Cancer Research Centre (CNIO)
@@ -62,7 +62,7 @@ print "SNPs for which LD with other variants in a 500 Kb window extracted in EUR
 print "@arraySNPs";
 print "\n";
 
-my $LDfile = "./output/other_variants_in_LD_1000GP.tsv";
+my $LDfile = "$ENV{'OUTPUTDIR'}/other_variants_in_LD_1000GP.tsv";
 open (LDFILE, ">$LDfile") or die "Could not open LDFILE $LDfile)";
 print LDFILE "variantGWAS\tvariant1000GP\tLD_r2\tLD_Dprime\n";
 
@@ -76,11 +76,10 @@ for (my $snp1=0; $snp1<=$#arraySNPs; $snp1++) {
 	  my $hash = decode_json($response->{content});
 	  local $Data::Dumper::Terse = 1;
 	  local $Data::Dumper::Indent = 1;
- 	  print Dumper $hash;
- 	  print "\n";
+#  	  print Dumper $hash;
+#  	  print "\n";
         my $maxnumber1000G_variants = 10000;
-
-   	  print "hash type are: $hash\n"; # this is to handle the "error" which is a hash (not array)
+#    	  print "hash type are: $hash\n"; # this is to handle the "error" which is a hash (not array)
  	  if ( ref($hash) eq 'HASH' ) {next;}   # forces to leave this because the error are not hash refs
  	  elsif ( ref($hash) eq 'ARRAY' ) {
 		for (my $i=0; $i <= $maxnumber1000G_variants; $i++) {

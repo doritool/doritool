@@ -1,5 +1,7 @@
 FROM willmclaren/ensembl-vep
-MAINTAINER "Miguel Madrid" mmadrid@cnio.es
+MAINTAINER "Miguel Madrid Mencía" miguel.madrid@bsc.es
+
+LABEL	description="Doritool container image" vendor="CNIO" maintainer="Miguel Madrid Mencía <miguel.madrid@bsc.es>"
 
 # https://github.com/Ensembl/ensembl-vep/blob/release/88/docker/Dockerfile
 # https://hub.docker.com/r/willmclaren/ensembl-vep/
@@ -21,7 +23,10 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 # Install R and BioConductor packages
-RUN apt-get install -y --no-install-recommends \
+RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/apt/sources.list
+RUN gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 && \
+    gpg -a --export E084DAB9 | apt-key add -
+RUN apt-get update && apt-get install -y --no-install-recommends \
       littler \
       r-cran-littler \
       r-base \
@@ -43,13 +48,20 @@ RUN apt-get install -y --no-install-recommends \
       && rm -rf /tmp/*/downloaded_packages/ /tmp/packages.R \
       && rm -rf /var/lib/apt/lists/*
 
+#RUN cd ${HOME} && git clone https://github.com/doritool/doritool.git
+RUN mkdir -p /opt/doritool
+COPY . /opt/doritool
+RUN chmod +x /opt/doritool/code/DoriTool.sh
+ENV PATH="/opt/doritool/code:${PATH}"
+
 USER vep
 
-RUN mkdir -p ${HOME}/.vep/Plugins/config/ && cd ${HOME}/.vep/Plugins/config && \
-    cd /tmp/ && git clone https://github.com/Ensembl/VEP_plugins.git && \
+
+RUN cd /tmp/ && git clone https://github.com/Ensembl/VEP_plugins.git && \
+    mkdir -p ${HOME}/.vep/Plugins/config/ && \
     cp -r VEP_plugins/* ${HOME}/.vep/Plugins/
 
-WORKDIR $HOME/doritool
+WORKDIR ${HOME}/doritool
 
-ENTRYPOINT ["./code/DoriTool.sh"]
+ENTRYPOINT ["DoriTool.sh"]
 

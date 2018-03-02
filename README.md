@@ -12,18 +12,7 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
   - [Window](https://docs.docker.com/docker-for-windows/install/) (In case it is needed, use _[docker toolbox](https://www.docker.com/products/docker-toolbox)_ )
        - Notice: Activate BIOS VT-X/AMD-v if is not enabled. Enabling it in the BIOS is mandatory
 
-2. Download the DoriTool repository
-    - `git clone https://github.com/doritool/doritool.git`
-
-     or the zip file
-
-    - <https://github.com/doritool/doritool/archive/master.zip>
-
-    Notice:
-
-    For window's users download the DoriTool repository using cmd (click windows R and write cmd, the shell will be opened). Or directly from the docker toolbox Shell.
-
-3. See the next section for learning how to run the _doritool_ script (<font color="red">the first time, the docker image will be downloaded, be patient</font>)
+2. See the next section for learning how to run the _doritool_ Docker image (<font color="red">the first time, the docker image will be downloaded, be patient</font>)
 
 # Quick start
 
@@ -37,13 +26,13 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 
 - Linux users
 
-    `./doritool`
+    `docker run --rm -u "$(id -u)" -v "$(pwd)":/home/vep/doritool --name doritool doritool/doritool`
 
 - Windows users
 
-    `doritool.bat`
+    `docker run --rm -u 1000 -v %cd%:/home/vep/doritool --name doritool doritool/doritool`
 
-Run one of these scripts with the next parameters
+Run one of these Docker commands with the next parameters
 
 3.1 Variant annotation analyslis (without Linkage Disequilibrium and eQTLs).
 
