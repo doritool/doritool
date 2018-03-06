@@ -12,7 +12,11 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
   - [Window](https://docs.docker.com/docker-for-windows/install/) (In case it is needed, use _[docker toolbox](https://www.docker.com/products/docker-toolbox)_ )
        - Notice: Activate BIOS VT-X/AMD-v if is not enabled. Enabling it in the BIOS is mandatory
 
-2. See the next section for learning how to run the _doritool_ Docker image (<font color="red">the first time, the docker image will be downloaded, be patient</font>)
+2. Download/Update the Docker image from Docker Hub with the next command (<font color="red"> the image will be downloaded, be patient</font>)
+
+    `docker pull doritool/doritool`
+
+3. See the next section for learning how to run the _doritool_ Docker image
 
 # Quick start
 
@@ -26,11 +30,11 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 
 - Linux users
 
-    `docker run --rm -u "$(id -u)" -v "$(pwd)":/home/vep/doritool --name doritool doritool/doritool`
+    `docker run --rm -u "$(id -u)" -v "$(pwd)":/home/vep/doritool doritool/doritool`
 
 - Windows users
 
-    `docker run --rm -u 1000 -v %cd%:/home/vep/doritool --name doritool doritool/doritool`
+    `docker run --rm -u 1000 -v %cd%:/home/vep/doritool doritool/doritool`
 
 Run one of these Docker commands with the next parameters
 
