@@ -1,3 +1,9 @@
+# Release 0.1.3 (2 March 2018)
+
+This release only add a bug fix
+
+- Fixed Docker container name colision
+
 # Release 0.1.2 (2 March 2018)
 
 This release adds new features
@@ -18,15 +24,9 @@ This release adds new features
 
 - Added repository inside the Docker image
 
-(0.1.2: 28 February 2018)
-
-
-
 # Beta Release 0.1.1 (23 October, 2017)
 
 This is the first release of DoriTool, functional 'in silico' annotation of variants tool. Please
 read web page for more information about this software.
 
 <https://doritool.github.io/>
-
-(0.1.1: 23 October 2017)
