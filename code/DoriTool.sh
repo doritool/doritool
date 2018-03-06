@@ -20,7 +20,6 @@
 #set -e    #para interrumpir script en caso de salir errores o faltar archivo
 # create work directory and paths
 BASEDIR="$(dirname $(dirname "$0"))"
-echo "BASEDIR = ${BASEDIR}"
 export WORKDIR_CODE="$BASEDIR"/code
 export WORKDIR_DATABASES="$BASEDIR"/databases
 export INPUTDIR="$PWD"/input
@@ -100,7 +99,6 @@ mv "$OUTPUTDIR"/VEP/condeloutput.txt_summary.html "$OUTPUTDIR"/VEP/Summary_VEP.h
 grep -v '^##' "$OUTPUTDIR"/VEP/condeloutput.txt | awk 'BEGIN{FS="\t";OFS="\t"} {if ($4 == "-") {$4="INTERGENIC"} {print $0} }' | sed -e 's/#//g' > "$OUTPUTDIR"/VEP/condeloutputclean0.txt
 
 # Add final column with cytoband into condeloutputclean0.txt. We create condeloutputclean1.txt with the cytoband script. The condeloutputclean1.txt is created by the perl script.
-echo "WORKDIR_CODE cyto = ${WORKDIR_CODE}"
 "$WORKDIR_CODE"/cytoband_finder.pl "$OUTPUTDIR"/VEP/condeloutputclean0.txt "$WORKDIR_DATABASES"/cytoBand.tsv
 
 #1.1 clean condeloutputclean1.txt and leave it without without header
