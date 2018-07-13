@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       r-cran-littler \
       r-base \
       r-base-dev \
-      r-recommended \
-      && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
+      r-recommended
+RUN  echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
       && echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r \
       && ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
       && ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
@@ -40,10 +40,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       && ln -s /usr/share/doc/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
       && install.r docopt \
       && rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
-      && rm -rf /var/lib/apt/lists/* \
-      && echo 'install.packages(c("RCurl", "XML", "gProfileR"), repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R \
+      && rm -rf /var/lib/apt/lists/*
+RUN   echo 'install.packages(c("RCurl", "XML", "gProfileR"), repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R \
       && echo 'source("https://bioconductor.org/biocLite.R")' >> /tmp/packages.R \
-      && echo 'biocLite(c("org.Hs.eg.db","FGNet","AnnotationDbi","topGO","KEGGprofile"))' >> /tmp/packages.R \
+      && echo 'biocLite(c("org.Hs.eg.db","FGNet","AnnotationDbi","topGO"))' >> /tmp/packages.R
+      # && echo 'biocLite(c("org.Hs.eg.db","FGNet","AnnotationDbi","topGO","KEGGprofile"))' >> /tmp/packages.R \
+RUN   echo 'install.packages("devtools");library(devtools);dev_mode(on=F)' >> /tmp/packages.R 
+RUN   echo 'install_github("mimadrid/KEGGprofile")' >> /tmp/packages.R \
       && Rscript /tmp/packages.R \
       && rm -rf /tmp/*/downloaded_packages/ /tmp/packages.R \
       && rm -rf /var/lib/apt/lists/*
