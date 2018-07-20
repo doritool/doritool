@@ -1,7 +1,7 @@
 FROM willmclaren/ensembl-vep
-MAINTAINER "Miguel Madrid Mencía" miguel.madrid@bsc.es
+MAINTAINER "Miguel Madrid Mencía" mimadrid@ucm.es
 
-LABEL	description="Doritool container image" vendor="CNIO" maintainer="Miguel Madrid Mencía <miguel.madrid@bsc.es>"
+LABEL	description="Doritool container image" vendor="CNIO" maintainer="Miguel Madrid Mencía <mimadrid@ucm.es>"
 
 # https://github.com/Ensembl/ensembl-vep/blob/release/88/docker/Dockerfile
 # https://hub.docker.com/r/willmclaren/ensembl-vep/
@@ -45,7 +45,7 @@ RUN   echo 'install.packages(c("RCurl", "XML", "gProfileR"), repos="http://cran.
       && echo 'source("https://bioconductor.org/biocLite.R")' >> /tmp/packages.R \
       && echo 'biocLite(c("org.Hs.eg.db","FGNet","AnnotationDbi","topGO"))' >> /tmp/packages.R
       # && echo 'biocLite(c("org.Hs.eg.db","FGNet","AnnotationDbi","topGO","KEGGprofile"))' >> /tmp/packages.R \
-RUN   echo 'install.packages("devtools");library(devtools);dev_mode(on=F)' >> /tmp/packages.R 
+RUN   echo 'install.packages("devtools");library(devtools);dev_mode(on=F)' >> /tmp/packages.R
 RUN   echo 'install_github("mimadrid/KEGGprofile")' >> /tmp/packages.R \
       && Rscript /tmp/packages.R \
       && rm -rf /tmp/*/downloaded_packages/ /tmp/packages.R \
