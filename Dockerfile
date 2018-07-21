@@ -57,12 +57,18 @@ COPY . /opt/doritool
 RUN chmod +x /opt/doritool/code/DoriTool.sh
 ENV PATH="/opt/doritool/code:${PATH}"
 
-USER vep
 
+ENV HOME="/home/vep"
+
+RUN mkdir -p $HOME && chmod 777 $HOME && chown vep vep $HOME
+
+USER vep
 
 RUN cd /tmp/ && git clone https://github.com/Ensembl/VEP_plugins.git && \
     mkdir -p ${HOME}/.vep/Plugins/config/ && \
     cp -r VEP_plugins/* ${HOME}/.vep/Plugins/
+
+
 
 WORKDIR ${HOME}/doritool
 
