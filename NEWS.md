@@ -1,3 +1,11 @@
+# Release 0.1.4 (25 July 2018)
+
+This release only add two bug fixes
+
+- Fixed KEGGprofile package
+
+- Fixed Docker image permissions
+
 # Release 0.1.3 (2 March 2018)
 
 This release only add a bug fix
