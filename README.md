@@ -30,7 +30,7 @@ The DoriTool is available under a GNU GPLv3 license. (https://www.gnu.org/licens
 
 - Linux users
 
-    `docker run --rm -u "$(id -u)" -v "$(pwd)":/home/vep/doritool doritool/doritool`
+    `docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd)":/home/vep/doritool doritool/doritool`
 
 - Windows users
 
