@@ -164,7 +164,7 @@ sed -i '1d' "$OUTPUTDIR"/SummaryReport0.tsv
 # make the $IFS the newline character
 BACKUPIFS=$IFS
 IFS=$'\n'
-for vargene in `cut -f3,4,5 "$OUTPUTDIR"/SummaryReport0.tsv | sort -u | sort -n`; do grep -w -m1 -P "$vargene\t" "$OUTPUTDIR"/SummaryReport0.tsv; done > "$OUTPUTDIR"/SummaryReport.tsv
+for vargene in `cut -f3,4,5 "$OUTPUTDIR"/SummaryReport0.tsv | sort -u | sort -n`; do grep -w -m1 "$vargene" "$OUTPUTDIR"/SummaryReport0.tsv; done > "$OUTPUTDIR"/SummaryReport.tsv
 # we add the header back again
 IFS=$BACKUPIFS
 
