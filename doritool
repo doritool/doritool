@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run --rm -u "$(id -u)" -v "$(pwd)":/home/vep/doritool --name doritool doritool-new "$@"
+docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd)":/home/vep/doritool doritool/doritool "$@"

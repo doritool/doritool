@@ -1,7 +1,6 @@
 FROM willmclaren/ensembl-vep
-MAINTAINER "Miguel Madrid Mencía" mimadrid@ucm.es
 
-LABEL	description="Doritool container image" vendor="CNIO" maintainer="Miguel Madrid Mencía <mimadrid@ucm.es>"
+LABEL	description="Doritool container image" vendor="CNIO" maintainer="Miguel Madrid Mencía <miguel.madrid-mencia@inserm.fr>"
 
 # https://github.com/Ensembl/ensembl-vep/blob/release/88/docker/Dockerfile
 # https://hub.docker.com/r/willmclaren/ensembl-vep/
